@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <!-- 模板编写方式一 -->
+  <!-- <script type="x-template" id="view">
+    <div>
+      <h2>{{ counter }}</h2>
+      <button @click="decreament">-</button>
+      <button @click="increament">+</button>
+    </div>
+  </script> -->
+
+  <!-- 模板编写方式二 -->
+  <template id="view">
+    <div>
+      <h2>{{ counter }}</h2>
+      <button @click="decreament">-</button>
+      <button @click="increament">+</button>
+    </div>
+  </template>
+
+  <script src="./004-认识CDN和CDN引入/vue.js"></script>
+
+  <script>
+    Vue.createApp({
+      template: '#view',
+      data() {
+        return {
+          counter: 10
+        }
+      },
+      methods: {
+        decreament() {
+          this.counter--
+        },
+        increament() {
+          this.counter++
+        }
+      }
+    }).mount('#app')
+  </script>
+
+</body>
+</html>

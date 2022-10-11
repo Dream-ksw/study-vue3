@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="./004-认识CDN和CDN引入/vue.js"></script>
+  <!-- <div class="counter">10</div>
+  <button class="decreament">-1</button>
+  <button class="increament">+1</button> -->
+  <div id="app"></div>
+  <script>
+    // 使用原生实现计数器
+    // const counterEl = document.querySelector('.counter')
+    // const deEl = document.querySelector('.decreament')
+    // const inEl = document.querySelector('.increament')
+
+    // let counter = 10
+    // counterEl.innerHTML = counter
+
+    // deEl.addEventListener('click', () => {
+    //   counter-=1
+    //   counterEl.innerHTML = counter
+    // })
+
+    // inEl.addEventListener('click', () => {
+    //   counter+=1
+    //   counterEl.innerHTML = counter
+    // })
+
+    // 使用vue实现计数器
+    Vue.createApp({
+      template: `
+        <h2>{{ counter }}</h2>
+        <button @click="counter--">-1</button>
+        <button @click="counter++">+1</button>
+      `,
+      data() {
+        return {
+          counter: 10
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
