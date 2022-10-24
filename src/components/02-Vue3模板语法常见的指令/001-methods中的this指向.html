@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <template id="view">
+    <div>
+      <p>当前计数: {{ count }}</p>
+      <button @click="decreament">-</button>
+      <button @click="increament">+</button>
+    </div>
+  </template>
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+
+
+  <script>
+    Vue.createApp({
+      template: '#view',
+      data() {
+        return {
+          count: 0
+        }
+      },
+      methods: {
+        decreament: () => {
+          // this.count--
+          // methods中的函数不能是箭头函数 因为箭头函数绑定了父级作用域的上下文
+          // 这里的this不会指向组件实例而是指向window
+          console.log(this)
+        },
+        increament() {
+          this.count++
+          // 这里的this指向组件实例
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+</html>
