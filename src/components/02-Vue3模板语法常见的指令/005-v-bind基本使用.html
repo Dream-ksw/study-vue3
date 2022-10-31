@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active {
+      color: red
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- vue3允许template中有多个根元素 -->
+  <template id="my-app">
+    <!-- 动态绑定 v-bind:  语法糖 : -->
+    <!-- <img :src="imgUrl" alt="">
+    <a :href="link">百度一下</a> -->
+
+    <!-- 动态绑定class -->
+    <!-- <div :class="className">哈哈哈哈哈</div> -->
+    <!-- 对象语法 -->
+    <!-- <div :class="{active: isActive, [title]: true}">哈哈哈哈哈</div>
+    <button @click="toggle">切换</button> -->
+
+    <!-- 默认的class 和 动态的class结合 -->
+    <!-- <div class="abc cba" :class="{active: isActive}"></div> -->
+
+    <!-- 将对象放到data中一个单独的属性 -->
+    <!-- <div class="abc cba" :class="classObj"></div> -->
+
+    <!-- 将返回的对象放到一个methods(computed)中 -->
+    <!-- <div class="abc cba" :class="getClassObj()"></div> -->
+
+
+    <!-- class数组语法 -->
+    <div :class="['abc', content]"></div>
+    <!-- 允许三元运算符 -->
+    <div :class="['abc', content, isActive? 'active' : '']"></div>
+    <div :class="['abc', content, { active:  isActive}]"></div>
+  </template>
+
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          imgUrl: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2F1114%2F121420113514%2F201214113514-6-1200.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1669800085&t=92bd199a48077f2448b5c5f6da86922c',
+          link: 'https://www.baidu.com/',
+
+          className: 'why',
+          isActive: true,
+          title: 'abc',
+
+          classObj: {
+            active: true,
+            title: true
+          },
+
+          content: 'content'
+        }
+      },
+      methods: {
+        toggle() {
+          this.isActive = !this.isActive
+        },
+        getClassObj() {
+          return {
+            active: true,
+            title: true
+          }
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- <h2>{{ counter }}</h2> -->
+    <!-- 基本指令 v-once 指令元素或者组件只渲染一次 子节点都是只渲染一次 -->
+    <!-- <div v-once>
+      <h2>{{ counter }}</h2>
+      <h2>{{ message }}</h2>
+    </div>
+    <button @click="increament">+</button> -->
+
+    <!-- 基本指令 v-text 等价于 mustache -->
+    <!-- <h2 v-text="message"></h2>
+    <h2>{{ message }}</h2> -->
+
+    <!-- 基本指令 v-html 渲染html -->
+    <!-- <div>{{ msg }}</div>
+    <div v-html="msg"></div> -->
+
+    <!-- 基本指令 v-pre 内容不做解析 -->
+    <!-- <div v-pre>{{ message }}</div> -->
+
+    <!-- v-cloak 在编译阶段隐藏  display: none -->
+    <h2 v-cloak>{{ message }}</h2>
+  </template>
+
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          counter: 100,
+          message: 'abc',
+          msg: '<div style="color: red; font-size: 16px">哈哈哈</div>'
+        }
+      },
+      methods: {
+        increament() {
+          this.counter++
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+</html>
