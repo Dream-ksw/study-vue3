@@ -16,12 +16,16 @@
 
   <!-- vue3允许template中有多个根元素 -->
   <template id="my-app">
+    <!-- 基础知识 -->
     <!-- 动态绑定 v-bind:  语法糖 : -->
     <!-- <img :src="imgUrl" alt="">
     <a :href="link">百度一下</a> -->
 
+
+    <!-- class语法 -->
     <!-- 动态绑定class -->
     <!-- <div :class="className">哈哈哈哈哈</div> -->
+
     <!-- 对象语法 -->
     <!-- <div :class="{active: isActive, [title]: true}">哈哈哈哈哈</div>
     <button @click="toggle">切换</button> -->
@@ -35,12 +39,25 @@
     <!-- 将返回的对象放到一个methods(computed)中 -->
     <!-- <div class="abc cba" :class="getClassObj()"></div> -->
 
-
     <!-- class数组语法 -->
-    <div :class="['abc', content]"></div>
+    <!-- <div :class="['abc', content]"></div> -->
+
     <!-- 允许三元运算符 -->
-    <div :class="['abc', content, isActive? 'active' : '']"></div>
-    <div :class="['abc', content, { active:  isActive}]"></div>
+    <!-- <div :class="['abc', content, isActive? 'active' : '']"></div>
+    <div :class="['abc', content, { active:  isActive}]"></div> -->
+
+    <!-- style对象语法 -->
+    <!-- 语法 :style="{css属性名: css属性值}" -->
+    <div :style="{color: finalColor, 'font-size': '20px'}">style对象语法</div>
+    <div :style="{color: finalColor, fontSize: '20px'}">style对象语法</div>
+    <div :style="{color: finalColor, fontSize: finalFontSize + 'px'}">style对象语法</div>
+    <!-- 绑定data中的属性值 并且是一个对象 -->
+    <div :style="finalStyleObj">hhh</div>
+    <!-- 绑定methods中的一个方法并且返回一个对象 -->
+    <div :style="getStyleObj()">wwww</div>
+
+    <!-- style数组语法 -->
+    <div :style="[style1Obj, style2Obj]">style数组语法</div>
   </template>
 
   <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
@@ -61,7 +78,21 @@
             title: true
           },
 
-          content: 'content'
+          content: 'content',
+          finalColor: 'red',
+          finalFontSize: 30,
+          finalStyleObj: {
+            color: 'purple',
+            fontWeight: 700,
+            backgroundColor: 'red'
+          },
+          style1Obj: {
+            color: 'purple',
+            fontSize: '30px'
+          },
+          style2Obj: {
+            textDecoration: 'underline'
+          }
         }
       },
       methods: {
@@ -72,6 +103,13 @@
           return {
             active: true,
             title: true
+          }
+        },
+        getStyleObj() {
+          return {
+            color: 'purple',
+            fontWeight: 700,
+            backgroundColor: 'red'
           }
         }
       }

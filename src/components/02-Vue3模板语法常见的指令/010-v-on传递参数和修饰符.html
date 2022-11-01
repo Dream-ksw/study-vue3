@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- 默认绑定event -->
+    <!-- <button @click="btnClick">按钮</button> -->
+
+    <!-- 既要传递事件对象 还有传递参数 -->
+    <!-- <button @click="btn2Click($event, 'ksw')">按钮</button> -->
+
+    <!-- v-on 修饰符 -->
+    <div @click="divClick">
+      <!-- stop 修饰符阻止时间冒泡 -->
+      <button @click.stop="btnClick">按钮</button>
+    </div>
+
+    <input type="text" @keyup.enter="enterKeyup">
+  </template>
+
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: 'Hello World'
+        }
+      },
+      methods: {
+        // btnClick(e) {
+        //   console.log(e)
+        // },
+        // btn2Click(e, param) {
+        //   console.log(e, param)
+        // }
+        divClick() {
+          console.log('div发生了点击')
+        },
+        btnClick() {
+          console.log('btn发生了点击')
+        },
+        enterKeyup(e) {
+          console.log(e.target.value);
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+</html>
