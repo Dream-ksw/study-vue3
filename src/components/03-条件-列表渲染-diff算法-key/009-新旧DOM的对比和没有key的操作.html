@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- 插入F案例 -->
+    <ul>
+      <li v-for="(letter, index) in letters">{{ letter }}</li>
+    </ul>
+    <button @click="insertF">插入F元素</button>
+    <!-- 
+      数组发生了变化, 对应的元素需要重新进行遍历, 重新渲染
+      在第一次渲染时 一个有四个元素 会生成4个VNode  最终会渲染成真实DOM
+     -->
+     <!-- 
+        当for循环中没有添加key时, 源码中调用patchUnkeyedChildren方法
+        源码中先取到新旧两个VNodes  然后使用Math.min()方法取两个VNodes的长度比较小的那个数进行for循环
+        每次循环分别取两个VNodes的值进行patch, 比较类型、内容如果相同则不用更新(效率高),不同比较类型和内容进行更新
+        当循环结束,比较新旧VNodes的长度 如果旧的长 调用unmountChildren方法将旧节点进行卸载
+        如果是新的长,调用mountChildren方法创建新的节点进行挂载
+      -->
+      <!-- 
+        当for循环中有kye时, 源码中调用patchKeyedChildren方法
+        1.先从头开始patch, 比较类型、内容, 如果不同 break
+        2.从尾部开始patch, 比较类型、内容, 如果不同 break
+        (3 4 如果满足条件 说明 新节点有旧节点没有 或者是 旧节点有新节点没有)
+        3.根据 i > e1 说明新 VNodes 多 挂载 
+        4.i > e2 说明旧 VNodes 多 卸载
+        5.尽可能多的排序组合服用
+       -->
+
+       <!-- 主要看源码 -->
+  </template>
+
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          letters: ['a', 'b', 'c', 'd']
+        }
+      },
+      methods: {
+        insertF() {
+          this.letters.splice(2, 0, 'f')
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+</html>

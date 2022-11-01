@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- 
+      v-if  是对DOM进行操作 添加和移除对应的元素
+      v-show  是通过css的display属性进行切换(频繁切换建议使用)
+     -->
+     <!-- v-show不支持和template一起使用 -->
+    <h2 v-if="isShow">呵呵呵</h2>
+    <h2 v-show="isShow">哈哈哈</h2>
+  </template>
+
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          isShow: false
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+</html>

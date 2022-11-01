@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <div>
+      <!-- 
+        VNode   Virtual Node 虚拟节点;
+        事实上,无论是组件还是元素,他们最终在Vue中表示出来的都是一个个VNode;
+        VNode本质上是一个Javascript对象
+      -->
+      <!-- 转换成虚拟节点之后 可使用性变大了 移动端 浏览器都支持 -->
+      <!-- <div class="title" style="font-size: 30px; color: red">哈哈哈</div> -->
+      <!-- 
+        const vnode = {
+          type: 'div',
+          props: {
+            class: 'title',
+            style: {
+              'font-size': '30px',
+              color: 'red'
+            }
+          },
+          children: '哈哈哈'
+        }
+       -->
+       <!-- 
+        如果我们不只是一个简单的div,而是有一大堆的元素,那么他们应该会行程一个VNode Tree
+        
+        先由template生成一大堆的VNode 形成一个VNode Tree 也就是虚拟DOM 然后虚拟DOM 进行一个真实的渲染
+
+        -->
+    </div>
+  </template>
+
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+</html>
