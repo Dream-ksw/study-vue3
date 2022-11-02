@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <h2>{{ info }}</h2>
+    <button @click="changeInfoName">使用this$watch()方式进行侦听</button>
+  </template>
+
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          info: {
+            name: 'why'
+          }
+        }
+      },
+      methods: {
+        changeInfoName() {
+          this.info.name = 'james'
+        }
+      },
+      created () {
+        this.$watch('info', (newValue, oldValue) => {
+          console.log(newValue, oldValue)
+        }, {
+          deep: true,
+          immediate: true
+        })
+      }
+    }
+
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+</html>

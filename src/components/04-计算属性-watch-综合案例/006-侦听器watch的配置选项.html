@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <div>{{ info }}</div>
+    <button @click="changeInfo">修改info</button>
+  </template>
+
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        // 这里的data最终是交给响应式系统处理的  proxy 对象
+        return {
+          info: {
+            name: 'why',
+            age: 18,
+            nba: {
+              name: 'kobe'
+            }
+          }
+        }
+      },
+      watch: {
+        // 默认情况下侦听器只能只听到数据本身发生的改变(内部发生的改变是无法侦听到的)
+        // info: {
+        //   handler: function(newInfo, oldInfo) {
+        //     console.log(newInfo, oldInfo)
+        //   },
+        //   // 对象的深度侦听时获取不到旧值
+        //   deep: true,
+        //   // 最开始加载时就立即执行一次
+        //   immediate: true
+        // },
+
+        'info.name': {
+          handler: function(newName, oldName) {
+            console.log(newName, oldName)
+          }
+        }
+      },
+      methods: {
+        changeInfo() {
+          // this.info = { name: 'kobe', age: 20 }
+          // this.info.nba.name = 'james'
+          this.info.name = 'james'
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <div>
+      计算属性 computed
+      <!-- 
+        对多个data数据进行计算\三元运算符来决定结果\数据进行某种转化后显示
+        对于任何包含响应式数据的复杂逻辑,你都应该使用计算属性
+        计算属性将被混入到组建实例中,所有getter和setter的this上下文自动地绑定为组件实例
+
+        计算属性的用法:
+        选项: computed
+        类型: [key:string]: Function | {get: Function, set: Function}
+       -->
+    </div>
+  </template>
+
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: 'Hello World'
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+</html>

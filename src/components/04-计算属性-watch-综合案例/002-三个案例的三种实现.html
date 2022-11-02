@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- 1.插值语法 -->
+    <!-- 
+      缺点:
+      1.模板中存在大量的复杂逻辑,不便于维护(模板中表达式的初衷是进行简单的计算)
+      2.当有多次一样的逻辑时,存在重复代码
+      3.多次使用的时候,很多运算也需要多次执行,没有缓存
+     -->
+    <div>{{ firstName }} {{ lastName }}</div>
+    <div>{{ score > 60 ? '及格' : '不及格' }}</div>
+    <div>{{ message.split('').reverse().join('') }}</div>
+    <hr>
+    <!-- 2.方法实现 -->
+    <!-- 
+      缺点:
+      需要多次执行,没有缓存
+     -->
+    <div>{{ getFullName() }}</div>
+    <div>{{ getFullName() }}</div>
+    <div>{{ isPass() }}</div>
+    <div>{{ reverseMessage() }}</div>
+    <hr>
+    <!-- 3.computed的实现 -->
+    <!-- 
+      有缓存
+     -->
+    <div>{{ fullName }}</div>
+    <div>{{ fullName }}</div>
+    <div>{{ pass }}</div>
+    <div>{{ reMessage }}</div>
+  </template>
+
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          firstName: 'Kobe',
+          lastName: 'Bryant',
+          score: 95,
+          message: 'Hello World'
+        }
+      },
+      computed: {
+        fullName() {
+          console.log('computed')
+          return this.firstName + ' ' + this.lastName
+        },
+        pass() {
+          return this.score >= 60 ? '及格' : '不及格'
+        },
+        reMessage() {
+          return this.message.split('').reverse().join('')
+        }
+      },
+      methods: {
+        getFullName() {
+          console.log('methods')
+          return this.firstName + ' ' + this.lastName
+        },
+        isPass() {
+          return this.score >= 60 ? '及格' : '不及格'
+        },
+        reverseMessage() {
+          return this.message.split('').reverse().join('')
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+</html>

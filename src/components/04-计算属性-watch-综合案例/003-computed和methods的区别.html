@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- 1.方法实现 -->
+    <!-- 
+      缺点:
+      没有缓存
+      首次加载还有数据发生更新的时候会执行多次
+     -->
+    <h2>{{ getFullName() }}</h2>
+    <h2>{{ getFullName() }}</h2>
+    <h2>{{ getFullName() }}</h2>
+    <hr>
+    <!-- 2.computed的实现 -->
+    <!-- 
+      优点:
+      更优雅
+      有缓存
+      首次加载还有数据发生更新的时候都是只会执行一次,性能更高
+     -->
+    <h2>{{ fullName }}</h2>
+    <h2>{{ fullName }}</h2>
+    <h2>{{ fullName }}</h2>
+    
+
+    <!-- 修改firstName -->
+    <button @click="editFirstName">修改firstName</button>
+  </template>
+
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          firstName: 'Kobe',
+          lastName: 'Bryant'
+        }
+      },
+      computed: {
+        fullName() {
+          // 计算属性中的运算只会执行一次
+          console.log('computed 中的 fullName')
+          return this.firstName + ' ' + this.lastName
+        }
+      },
+      methods: {
+        getFullName() {
+          console.log('methods 中的 fullName')
+          return this.firstName + ' ' + this.lastName
+        },
+        editFirstName() {
+          this.firstName = 'Bryant'
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+</html>
