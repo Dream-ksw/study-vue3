@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- 
+      v-mode的原理其实是背后有两个操作:
+      1.v-bind: value 绑定了value属性的值
+      2.v-on绑定input事件监听到函数中,函数会获取最新的值赋值到绑定的值中
+     -->
+    <!-- <input type="text" :value="message" @input="(event) => message = event.target.value"> -->
+    <input type="text" :value="message" @input="changeMessage">
+    <!-- <input type="text" v-model="message"> -->
+    <h2>{{ message }}</h2>
+  </template>
+
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: 0
+        }
+      },
+      methods:{
+        changeMessage(e) {
+          console.log(typeof e.target.value)
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+</html>

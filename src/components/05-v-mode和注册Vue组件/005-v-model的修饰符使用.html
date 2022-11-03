@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- 修饰符 -->
+
+    <!-- 1. .lazy -->
+    <!-- .lazy修饰符会将 input事件(元素值发生变化时立即触发) 改为 change事件(失去焦点的时候才会触发) -->
+    <!-- <input ref="ipt" type="text" v-model.lazy="message"> -->
+    <!-- 
+      默认情况下 v-model 将我们输入的值 绑定到属性上的时候永远是一个string类型
+      我们开始查看类型判断是data中我们定义的数据的类型 
+      而源码中该指令拿到的值是DOM元素中的value值 这个值一直是string类型  所以在返回的时候也是string类型
+    -->
+
+    <!-- 2. .number -->
+    <!-- 逻辑判断时会进行隐式转换 -->
+    <!-- 
+      可以使用.number修饰符
+      注意: 如果值以字母开头则判断为string类型  如果是以数字开头则判断为number类型  
+      如果有两种类型,以首个字符为主 截取出现的第二种类型
+    -->
+    <!-- <input ref="ipt" type="text" v-model.number="message">
+    <h2>{{ message }}</h2>
+    <button @click="showType">查看类型</button>
+    <p>data数据中的类型: {{ type }}</p> -->
+    <!-- <p>DOMvalue的类型: {{ domValueType }}</p> -->
+
+    <!-- 3. .trim -->
+    <!-- 去除前后空格 -->
+    <input ref="ipt" type="text" v-model.trim="messageTrim">
+    <button @click="printValue">打印</button>
+  </template>
+
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: 100,
+          type: '',
+          domValueType: '',
+          messageTrim: 'Hello World'
+        }
+      },
+      methods: {
+        showType() {
+          this.type = typeof this.message
+          this.domValueType = typeof this.$refs.ipt.value
+          console.log(this.message, typeof this.message)
+        },
+
+        printValue() {
+          console.log(this.messageTrim)
+        }
+      }
+    }
+
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+</html>
