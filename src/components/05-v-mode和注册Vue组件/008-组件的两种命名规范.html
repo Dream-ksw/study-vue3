@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <div>
+      <h2>{{ message }}</h2>
+
+    <!-- 模板中建议使用分割符的方式 -->
+    <component-a></component-a>
+    <component-c></component-c>
+    <!-- 不建议这种方式 直接写在DOM中不允许使用 -->
+    <!-- <ComponentC> -->
+    </div>
+  </template>
+
+  <script src="../01-邂逅体验Vue3和Vue3源码/004-认识CDN和CDN引入/vue.js"></script>
+  <script>
+    const App = {
+      template: '#my-app',
+      data() {
+        return {
+          message: 'Hello World'
+        }
+      }
+    }
+
+    // 组件名称定义方式
+    // 方式一: 使用kebab-case(短横线分割符)  component-a
+    // 方式二: 使用PascalCase (驼峰标识符)  ComponentC
+    // 注意: 无论注册的时候使用的以上哪种方式 在模板中使用的时候建议使用分割符的方式
+
+    const app = Vue.createApp(App)
+    app.component('component-a', {
+      template: '<h2>我是component-a全局组件</h2>'
+    })
+    app.component('ComponentC', {
+      template: '<h2>我是ComponentC全局组件</h2>'
+    })
+    
+    app.mount('#app')
+  </script>
+</body>
+</html>
