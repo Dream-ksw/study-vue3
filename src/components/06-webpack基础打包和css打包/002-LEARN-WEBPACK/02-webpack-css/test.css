@@ -1,0 +1,4 @@
+.title {
+  /* 防止选取元素的文本 */
+  user-select: none;
+}

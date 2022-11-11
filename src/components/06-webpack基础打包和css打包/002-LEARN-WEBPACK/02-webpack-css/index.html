@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <script src="./dist/main.js" type="module"></script> -->
+  <script src="./build/bundle.js" type="module"></script>
+</head>
+<body>
+  
+  <script>
+    // package.json
+    //  "scripts": {  "build": "webpack" }
+    // 腳本中執行的命令會自動去node_modlues文件夾下的.bin文件中尋找的
+    // build: "webpack --config 自己指定的webpack.config的名字"
+
+    // webpack依赖图 依赖关系图 图结构  配置中指定了入口和出口
+    // 从入口开始查找所有依赖 进行打包
+
+    // loader用于对模块的源代码进行转换
+    // 可以将css文件也看成一个模块,我们是通过import来加载这个模块的
+    // webpack其实并不知道如何对其加载,我们必须指定对应的loader来完成这个功能
+  </script>
+</body>
+</html>

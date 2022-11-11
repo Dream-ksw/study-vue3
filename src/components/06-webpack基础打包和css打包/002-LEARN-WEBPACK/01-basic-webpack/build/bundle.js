@@ -1,0 +1,1 @@
+!function(){var o={466:function(o){o.exports={priceFormat:function(o){return"￥"+o}}}},r={};function t(n){var e=r[n];if(void 0!==e)return e.exports;var c=r[n]={exports:{}};return o[n](c,c.exports,t),c.exports}!function(){"use strict";const{priceFormat:o}=t(466);console.log(50),console.log(o(88.88))}()}();
