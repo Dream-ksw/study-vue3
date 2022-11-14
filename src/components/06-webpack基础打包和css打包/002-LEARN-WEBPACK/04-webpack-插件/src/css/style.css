@@ -1,0 +1,7 @@
+.title {
+  /* 可以使用8位 后面的两位数代表透明度 */
+  color: #12345678;
+  font-weight: 700;
+  font-size: 30px;
+  user-select: none;
+}
