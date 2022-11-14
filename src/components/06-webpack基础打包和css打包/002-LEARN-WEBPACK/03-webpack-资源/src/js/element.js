@@ -2,7 +2,9 @@
 import '../css/style.css'
 import '../css/title.less'
 import '../css/image.css'
-
+// 引入字体样式
+import '../font/iconfont.css'
+// 在js中需要将图片当做一个模块使用
 import zznhImage from '../img/zznh.png'
 
 const divEl = document.createElement('div')
@@ -17,6 +19,11 @@ bgDivEL.className = 'image-bg'
 const imgEl = document.createElement('img')
 imgEl.src = zznhImage
 
-document.body.append(divEl)
-document.body.append(bgDivEL)
-document.body.append(imgEl)
+// i元素
+const iEl = document.createElement('i')
+iEl.className = 'iconfont icon-ashbin'
+
+document.body.appendChild(divEl)
+document.body.appendChild(bgDivEL)
+document.body.appendChild(imgEl)
+document.body.appendChild(iEl)
