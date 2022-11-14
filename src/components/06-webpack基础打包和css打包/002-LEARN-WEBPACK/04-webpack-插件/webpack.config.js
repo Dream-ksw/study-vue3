@@ -9,6 +9,12 @@ const { DefinePlugin } = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
+  // 设置模式
+  // development  开发阶段
+  // production  打包上线
+  mode: 'development',
+  // 设置source-map, 建立js映射文件,方便调试代码错误
+  devtool: 'source-map',
   entry: './src/main.js',
   output: {
     // 这里的path路径必须是绝对路径
@@ -95,7 +101,7 @@ module.exports = {
         },
         parser: {
           dataUrlCondition: {
-            maxSize: 100 * 1024
+            maxSize: 10 * 1024
           }
         }
       },
@@ -126,13 +132,16 @@ module.exports = {
   plugins: [
     // 一个个的插件对象
     new CleanWebpackPlugin(), // 此插件可以在每次打包时清除之前的打包文件
+    
     new HtmlWebpackPlugin({
       template: './public/index.html',
       title: 'study webpack'
     }), // 此插件可以在打包文件中自动生成html模板
+
     new DefinePlugin({
       BASE_URL: "'./'"
     }), // 定义的一些变量
+
     new CopyWebpackPlugin({
       patterns: [
         {
