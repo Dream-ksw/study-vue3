@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * babel编译器的作用就是将我们的源代码,转换成浏览器可以直接识别的另外一段源代码
  * babel编译器的工作流程:
@@ -20,5 +22,7 @@
  * 
  */
 
-const names = ['abc', 'cba', 'nba']
-names.forEach(item => console.log(item))
+var names = ['abc', 'cba', 'nba'];
+names.forEach(function (item) {
+  return console.log(item);
+});

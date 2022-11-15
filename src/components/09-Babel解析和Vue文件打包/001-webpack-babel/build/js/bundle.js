@@ -1,6 +1,240 @@
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/***/ (function(module) {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+module.exports = function (cssWithMappingToString) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = "";
+      var needLayer = typeof item[5] !== "undefined";
+      if (item[4]) {
+        content += "@supports (".concat(item[4], ") {");
+      }
+      if (item[2]) {
+        content += "@media ".concat(item[2], " {");
+      }
+      if (needLayer) {
+        content += "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {");
+      }
+      content += cssWithMappingToString(item);
+      if (needLayer) {
+        content += "}";
+      }
+      if (item[2]) {
+        content += "}";
+      }
+      if (item[4]) {
+        content += "}";
+      }
+      return content;
+    }).join("");
+  }; // import a list of modules into the list
+
+  list.i = function i(modules, media, dedupe, supports, layer) {
+    if (typeof modules === "string") {
+      modules = [[null, modules, undefined]];
+    }
+    var alreadyImportedModules = {};
+    if (dedupe) {
+      for (var k = 0; k < this.length; k++) {
+        var id = this[k][0];
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+    for (var _k = 0; _k < modules.length; _k++) {
+      var item = [].concat(modules[_k]);
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        continue;
+      }
+      if (typeof layer !== "undefined") {
+        if (typeof item[5] === "undefined") {
+          item[5] = layer;
+        } else {
+          item[1] = "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {").concat(item[1], "}");
+          item[5] = layer;
+        }
+      }
+      if (media) {
+        if (!item[2]) {
+          item[2] = media;
+        } else {
+          item[1] = "@media ".concat(item[2], " {").concat(item[1], "}");
+          item[2] = media;
+        }
+      }
+      if (supports) {
+        if (!item[4]) {
+          item[4] = "".concat(supports);
+        } else {
+          item[1] = "@supports (".concat(item[4], ") {").concat(item[1], "}");
+          item[4] = supports;
+        }
+      }
+      list.push(item);
+    }
+  };
+  return list;
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
+/*!********************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
+  \********************************************************/
+/***/ (function(module) {
+
+"use strict";
+
+
+module.exports = function (url, options) {
+  if (!options) {
+    options = {};
+  }
+  if (!url) {
+    return url;
+  }
+  url = String(url.__esModule ? url.default : url); // If url is already wrapped in quotes, remove them
+
+  if (/^['"].*['"]$/.test(url)) {
+    url = url.slice(1, -1);
+  }
+  if (options.hash) {
+    url += options.hash;
+  } // Should url be wrapped?
+  // See https://drafts.csswg.org/css-values-3/#urls
+
+  if (/["'() \t\n]|(%20)/.test(url) || options.needQuotes) {
+    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
+  }
+  return url;
+};
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/sourceMaps.js":
+/*!************************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/sourceMaps.js ***!
+  \************************************************************/
+/***/ (function(module) {
+
+"use strict";
+
+
+module.exports = function (item) {
+  var content = item[1];
+  var cssMapping = item[3];
+  if (!cssMapping) {
+    return content;
+  }
+  if (typeof btoa === "function") {
+    var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(cssMapping))));
+    var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+    var sourceMapping = "/*# ".concat(data, " */");
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return "/*# sourceURL=".concat(cssMapping.sourceRoot || "").concat(source, " */");
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join("\n");
+  }
+  return [content].join("\n");
+};
+
+/***/ }),
+
+/***/ "./src/js/element.js":
+/*!***************************!*\
+  !*** ./src/js/element.js ***!
+  \***************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/style.css */ "./src/css/style.css");
+/* harmony import */ var _css_title_less__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/title.less */ "./src/css/title.less");
+/* harmony import */ var _css_image_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/image.css */ "./src/css/image.css");
+/* harmony import */ var _font_iconfont_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../font/iconfont.css */ "./src/font/iconfont.css");
+/* harmony import */ var _img_zznh_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../img/zznh.png */ "./src/img/zznh.png");
+// import 'css-loader!../css/style.css' css-loader使用内联方式
+
+
+
+// 引入字体样式
+
+// 在js中需要将图片当做一个模块使用
+
+var divEl = document.createElement('div');
+divEl.className = "title";
+divEl.innerHTML = '你好啊,李银河';
+
+// 设置背景图片
+var bgDivEL = document.createElement('div');
+bgDivEL.className = 'image-bg';
+
+// 设置img元素的src
+var imgEl = document.createElement('img');
+imgEl.src = _img_zznh_png__WEBPACK_IMPORTED_MODULE_4__;
+
+// i元素
+var iEl = document.createElement('i');
+iEl.className = 'iconfont icon-ashbin';
+
+// console.log(content.length)
+
+document.body.appendChild(divEl);
+document.body.appendChild(bgDivEL);
+document.body.appendChild(imgEl);
+document.body.appendChild(iEl);
+
+/***/ }),
+
+/***/ "./src/js/format.js":
+/*!**************************!*\
+  !*** ./src/js/format.js ***!
+  \**************************/
+/***/ (function(module) {
+
+var priceFormat = function priceFormat(price) {
+  return '￥' + price;
+};
+module.exports = {
+  priceFormat: priceFormat
+};
+
+/***/ }),
+
+/***/ "./src/js/math.js":
+/*!************************!*\
+  !*** ./src/js/math.js ***!
+  \************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "sum": function() { return /* binding */ sum; }
+/* harmony export */ });
+function sum(num1, num2) {
+  return num1 + num2;
+}
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/css/title.less":
 /*!*********************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/css/title.less ***!
@@ -111,189 +345,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, "@font-face {font-family: \"iconfont\";
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/api.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
-  \*****************************************************/
-/***/ (function(module) {
-
-"use strict";
-
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-*/
-module.exports = function (cssWithMappingToString) {
-  var list = []; // return the list of modules as css string
-
-  list.toString = function toString() {
-    return this.map(function (item) {
-      var content = "";
-      var needLayer = typeof item[5] !== "undefined";
-
-      if (item[4]) {
-        content += "@supports (".concat(item[4], ") {");
-      }
-
-      if (item[2]) {
-        content += "@media ".concat(item[2], " {");
-      }
-
-      if (needLayer) {
-        content += "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {");
-      }
-
-      content += cssWithMappingToString(item);
-
-      if (needLayer) {
-        content += "}";
-      }
-
-      if (item[2]) {
-        content += "}";
-      }
-
-      if (item[4]) {
-        content += "}";
-      }
-
-      return content;
-    }).join("");
-  }; // import a list of modules into the list
-
-
-  list.i = function i(modules, media, dedupe, supports, layer) {
-    if (typeof modules === "string") {
-      modules = [[null, modules, undefined]];
-    }
-
-    var alreadyImportedModules = {};
-
-    if (dedupe) {
-      for (var k = 0; k < this.length; k++) {
-        var id = this[k][0];
-
-        if (id != null) {
-          alreadyImportedModules[id] = true;
-        }
-      }
-    }
-
-    for (var _k = 0; _k < modules.length; _k++) {
-      var item = [].concat(modules[_k]);
-
-      if (dedupe && alreadyImportedModules[item[0]]) {
-        continue;
-      }
-
-      if (typeof layer !== "undefined") {
-        if (typeof item[5] === "undefined") {
-          item[5] = layer;
-        } else {
-          item[1] = "@layer".concat(item[5].length > 0 ? " ".concat(item[5]) : "", " {").concat(item[1], "}");
-          item[5] = layer;
-        }
-      }
-
-      if (media) {
-        if (!item[2]) {
-          item[2] = media;
-        } else {
-          item[1] = "@media ".concat(item[2], " {").concat(item[1], "}");
-          item[2] = media;
-        }
-      }
-
-      if (supports) {
-        if (!item[4]) {
-          item[4] = "".concat(supports);
-        } else {
-          item[1] = "@supports (".concat(item[4], ") {").concat(item[1], "}");
-          item[4] = supports;
-        }
-      }
-
-      list.push(item);
-    }
-  };
-
-  return list;
-};
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
-/*!********************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
-  \********************************************************/
-/***/ (function(module) {
-
-"use strict";
-
-
-module.exports = function (url, options) {
-  if (!options) {
-    options = {};
-  }
-
-  if (!url) {
-    return url;
-  }
-
-  url = String(url.__esModule ? url.default : url); // If url is already wrapped in quotes, remove them
-
-  if (/^['"].*['"]$/.test(url)) {
-    url = url.slice(1, -1);
-  }
-
-  if (options.hash) {
-    url += options.hash;
-  } // Should url be wrapped?
-  // See https://drafts.csswg.org/css-values-3/#urls
-
-
-  if (/["'() \t\n]|(%20)/.test(url) || options.needQuotes) {
-    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
-  }
-
-  return url;
-};
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/sourceMaps.js":
-/*!************************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/sourceMaps.js ***!
-  \************************************************************/
-/***/ (function(module) {
-
-"use strict";
-
-
-module.exports = function (item) {
-  var content = item[1];
-  var cssMapping = item[3];
-
-  if (!cssMapping) {
-    return content;
-  }
-
-  if (typeof btoa === "function") {
-    var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(cssMapping))));
-    var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
-    var sourceMapping = "/*# ".concat(data, " */");
-    var sourceURLs = cssMapping.sources.map(function (source) {
-      return "/*# sourceURL=".concat(cssMapping.sourceRoot || "").concat(source, " */");
-    });
-    return [content].concat(sourceURLs).concat([sourceMapping]).join("\n");
-  }
-
-  return [content].join("\n");
-};
 
 /***/ }),
 
@@ -817,86 +868,6 @@ module.exports = styleTagTransform;
 
 /***/ }),
 
-/***/ "./src/js/element.js":
-/*!***************************!*\
-  !*** ./src/js/element.js ***!
-  \***************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../css/style.css */ "./src/css/style.css");
-/* harmony import */ var _css_title_less__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/title.less */ "./src/css/title.less");
-/* harmony import */ var _css_image_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/image.css */ "./src/css/image.css");
-/* harmony import */ var _font_iconfont_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../font/iconfont.css */ "./src/font/iconfont.css");
-/* harmony import */ var _img_zznh_png__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../img/zznh.png */ "./src/img/zznh.png");
-// import 'css-loader!../css/style.css' css-loader使用内联方式
-
-
-
-// 引入字体样式
-
-// 在js中需要将图片当做一个模块使用
-
-
-const divEl = document.createElement('div')
-divEl.className = "title"
-divEl.innerHTML = '你好啊,李银河'
-
-// 设置背景图片
-const bgDivEL = document.createElement('div')
-bgDivEL.className = 'image-bg'
-
-// 设置img元素的src
-const imgEl = document.createElement('img')
-imgEl.src = _img_zznh_png__WEBPACK_IMPORTED_MODULE_4__
-
-// i元素
-const iEl = document.createElement('i')
-iEl.className = 'iconfont icon-ashbin'
-
-// console.log(content.length)
-
-document.body.appendChild(divEl)
-document.body.appendChild(bgDivEL)
-document.body.appendChild(imgEl)
-document.body.appendChild(iEl)
-
-/***/ }),
-
-/***/ "./src/js/format.js":
-/*!**************************!*\
-  !*** ./src/js/format.js ***!
-  \**************************/
-/***/ (function(module) {
-
-const priceFormat = function (price) {
-  return '￥' + price
-}
-
-module.exports = {
-  priceFormat
-}
-
-/***/ }),
-
-/***/ "./src/js/math.js":
-/*!************************!*\
-  !*** ./src/js/math.js ***!
-  \************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "sum": function() { return /* binding */ sum; }
-/* harmony export */ });
-function sum(num1, num2) {
-  return num1 + num2
-}
-
-/***/ }),
-
 /***/ "./src/font/iconfont.eot?t=1611048831079":
 /*!***********************************************!*\
   !*** ./src/font/iconfont.eot?t=1611048831079 ***!
@@ -1081,11 +1052,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_math__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/math */ "./src/js/math.js");
 /* harmony import */ var _js_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/element */ "./src/js/element.js");
 
-const { priceFormat } = __webpack_require__(/*! ./js/format */ "./src/js/format.js")
-;
+var _require = __webpack_require__(/*! ./js/format */ "./src/js/format.js"),
+  priceFormat = _require.priceFormat;
 
-console.log((0,_js_math__WEBPACK_IMPORTED_MODULE_0__.sum)(20, 30))
-console.log(priceFormat(98.88))
+console.log((0,_js_math__WEBPACK_IMPORTED_MODULE_0__.sum)(20, 30));
+console.log(priceFormat(98.88));
+var names = ['abc', 'cba', 'nba'];
+names.forEach(function (item) {
+  return console.log(item);
+});
 }();
 /******/ })()
 ;
