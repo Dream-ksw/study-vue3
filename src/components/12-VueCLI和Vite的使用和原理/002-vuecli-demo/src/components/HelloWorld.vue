@@ -3,7 +3,7 @@
     <h1>{{ msg }}</h1>
     <!-- 
       vite的介绍和发展
-      构建工具: webpack rollup parcel(零配置) gulp(自动化) vite(下一嗲前端开发和构建工具)
+      构建工具: webpack rollup parcel(零配置) gulp(自动化) vite(下一代前端开发和构建工具)
       两部分: 1.开发服务器 2.一套构建命令(rollup)
      -->
   </div>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <div id="app"></div> -->
+  <!-- 
+    为什么要使用构建工具?
+    1.某系文件是不是别的(ts vue)
+    2.如果包之间依赖太多,那么会发送过多的网络请求
+
+    原理:
+    vite搭建了一个本地服务器 Connect(擅长做转发) 做了一个请求拦截然后做了一个转发
+    vite将浏览器识别不了的multiply.js title.less代码转换为同名的 es6 js代码
+   -->
+   <!-- 
+    ESBuild
+    超快的构建速度,并且不需要缓存
+    支持ES6和CommonJS的模块化
+    支持ES6的Tree Shaking  (删除没有用到的代码)
+    支持Go JavaScript的API
+    支持TypeScript JSX等语法编译
+    支持SourceMap
+    支持代码压缩
+    支持扩展其他插件
+    -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
