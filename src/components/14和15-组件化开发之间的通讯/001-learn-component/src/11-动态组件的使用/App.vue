@@ -14,7 +14,32 @@
 
 
     <!-- 使用动态组件 -->
-    <component :is="currentTab"></component>
+    <!-- <component 
+      :is="currentTab" 
+      :namg="'why'"
+      :age="18"
+      @pageClick="pageClick"
+    >
+    </component> -->
+
+    <!-- 使组件发生缓存 -->
+    <!-- 
+      include string|RegExp|Array 哪些组件名称需要缓存
+      exclude string|RegExp|Array 哪些组件名称不需要缓存
+      max  number|string 可以缓存的最大组件数量(如果超过组件数 那么缓存组件中最近没有被访问的实例会被销毁)
+     -->
+    <!-- <keep-alive include="about"> -->
+    <!-- <keep-alive :include="['home', 'about']"> -->
+    <!-- <keep-alive :exclude="'home'"> -->
+    <keep-alive :max="2">
+      <component 
+        :is="currentTab" 
+        :namg="'why'"
+        :age="18"
+        @pageClick="pageClick"
+      >
+      </component>
+    </keep-alive>
   </div>
 </template>
 
@@ -37,6 +62,9 @@
     methods: {
       tabClick(item) {
         this.currentTab = item
+      },
+      pageClick() {
+        console.log('内部页面发生了改变')
       }
     }
   }
