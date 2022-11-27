@@ -28,10 +28,10 @@
       exclude string|RegExp|Array 哪些组件名称不需要缓存
       max  number|string 可以缓存的最大组件数量(如果超过组件数 那么缓存组件中最近没有被访问的实例会被销毁)
      -->
-    <!-- <keep-alive include="about"> -->
     <!-- <keep-alive :include="['home', 'about']"> -->
     <!-- <keep-alive :exclude="'home'"> -->
-    <keep-alive :max="2">
+    <!-- <keep-alive :max="2"> -->
+    <keep-alive include="about">
       <component 
         :is="currentTab" 
         :namg="'why'"
